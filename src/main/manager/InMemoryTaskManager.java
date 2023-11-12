@@ -16,10 +16,11 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class InMemoryTaskManager implements TaskManager {
 
-    private static int getIdCounter = 1;
+    protected int getIdCounter = 1;
     protected final Map<Integer, Task> tasks = new HashMap<>();
     protected final Map<Integer, SubTask> subTasks = new HashMap<>();
     protected final Map<Integer, Epic> epics = new HashMap<>();
@@ -366,7 +367,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     public List<Task> getPrioritizedTasks() {
-        return prioritizedTasks.stream().toList();
+        return prioritizedTasks.stream().collect(Collectors.toList());
     }
 
     @Override

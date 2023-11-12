@@ -17,6 +17,7 @@ public class KVServer {
     private final HttpServer server;
     private final Map<String, String> data = new HashMap<>();
 
+
     public KVServer() throws IOException {
         apiToken = generateApiToken();
         server = HttpServer.create(new InetSocketAddress("localhost", PORT), 0);
@@ -27,7 +28,7 @@ public class KVServer {
 
     private void load(HttpExchange httpExchange) {
 
-        try (httpExchange) {
+        try  {
             System.out.println("\n/load");
             if (!hasAuth(httpExchange)) {
                 System.out.println("The request is not authorized, API-key need");
@@ -56,12 +57,16 @@ public class KVServer {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (httpExchange != null) {
+                httpExchange.close();
+            }
         }
     }
 
     private void save(HttpExchange httpExchange) throws IOException {
-        try (httpExchange) {
-            System.out.println("\n/save");
+        try  {
+            System.out.println("\n/load");
             if (!hasAuth(httpExchange)) {
                 System.out.println("The request is not authorized, API-key need");
                 httpExchange.sendResponseHeaders(StatusCode.CODE_403.getCode(), 0);
@@ -87,17 +92,29 @@ public class KVServer {
                 System.out.println("/save wait POST-request, but received: " + httpExchange.getRequestMethod());
                 httpExchange.sendResponseHeaders(StatusCode.CODE_405.getCode(), 0);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (httpExchange != null) {
+                httpExchange.close();
+            }
         }
     }
 
     private void register(HttpExchange httpExchange) throws IOException {
-        try (httpExchange) {
-            System.out.println("\n/register");
+        try {
+            System.out.println("\n/load");
             if ("GET".equals(httpExchange.getRequestMethod())) {
                 sendText(httpExchange, apiToken);
             } else {
                 System.out.println("/register wait GET-request, but received " + httpExchange.getRequestMethod());
                 httpExchange.sendResponseHeaders(StatusCode.CODE_405.getCode(), 0);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (httpExchange != null) {
+                httpExchange.close();
             }
         }
     }

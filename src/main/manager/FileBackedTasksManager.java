@@ -148,10 +148,10 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
                 Task task = fromString(line);
 
-                if (task instanceof Epic epic) {
-                    addEpic(epic);
-                } else if (task instanceof SubTask subtask) {
-                    addSubTask(subtask);
+                if (task instanceof Epic) {
+                    addEpic((Epic) task);
+                } else if (task instanceof SubTask) {
+                    addSubTask((SubTask) task);
                 } else {
                     addTask(task);
                 }

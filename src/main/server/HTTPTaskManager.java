@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import main.exceptions.ManagerSaveException;
 import main.manager.FileBackedTasksManager;
 import main.manager.HistoryManager;
 import main.tasks.Epic;
@@ -26,7 +27,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         super(historyManager);
         client = new KVTaskClient(path);
 
-        JsonElement jsonTasks = JsonParser.parseString(client.load("main/tasks"));
+        JsonElement jsonTasks = JsonParser.parseString(client.load("tasks"));
         if (!jsonTasks.isJsonNull()) {
             JsonArray jsonTasksArray = jsonTasks.getAsJsonArray();
             for (JsonElement jsonTask : jsonTasksArray) {
@@ -34,6 +35,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 this.addTask(task);
             }
         }
+
 
         JsonElement jsonEpics = JsonParser.parseString(client.load("epics"));
         if (!jsonEpics.isJsonNull()) {
@@ -71,7 +73,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
 
     @Override
     public void save() {
-        client.put("main/tasks", gson.toJson(tasks.values()));
+        client.put("tasks", gson.toJson(tasks.values()));
         client.put("subtasks", gson.toJson(subTasks.values()));
         client.put("epics", gson.toJson(epics.values()));
         client.put("history", gson.toJson(this.getHistory()

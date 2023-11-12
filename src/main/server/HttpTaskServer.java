@@ -23,17 +23,17 @@ public class HttpTaskServer {
         TaskManager taskManager = Managers.getDefault(historyManager);
         this.httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
-        httpServer.createContext("/main/tasks/", new TasksHandler(taskManager));
-        httpServer.createContext("/main/tasks/task/", new TaskHandler(taskManager));
-        httpServer.createContext("/main/tasks/epic/", new EpicHandler(taskManager));
-        httpServer.createContext("/main/tasks/subtask/", new SubtaskHandler(taskManager));
-        httpServer.createContext("/main/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager));
-        httpServer.createContext("/main/tasks/history/", new HistoryHandler(taskManager));
+        httpServer.createContext("/tasks/", new TasksHandler(taskManager));
+        httpServer.createContext("/tasks/task/", new TaskHandler(taskManager));
+        httpServer.createContext("/tasks/epic/", new EpicHandler(taskManager));
+        httpServer.createContext("/tasks/subtask/", new SubtaskHandler(taskManager));
+        httpServer.createContext("/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager));
+        httpServer.createContext("/tasks/history/", new HistoryHandler(taskManager));
     }
 
     public void start() {
         System.out.println("HTTP server running on " + PORT + " port!");
-        System.out.println("http://localhost:" + PORT + "/main/tasks/");
+        System.out.println("http://localhost:" + PORT + "/tasks/");
         httpServer.start();
     }
 
@@ -43,6 +43,6 @@ public class HttpTaskServer {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        new HttpTaskServer().start();
+        new KVServer().start();
     }
 }

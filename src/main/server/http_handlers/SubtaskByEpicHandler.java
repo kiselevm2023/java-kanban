@@ -16,7 +16,7 @@ import java.time.Instant;
 
 public class SubtaskByEpicHandler implements HttpHandler {
     private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
-    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
     private final TaskManager taskManager;
 
     public SubtaskByEpicHandler(TaskManager taskManager) {
@@ -49,7 +49,7 @@ public class SubtaskByEpicHandler implements HttpHandler {
                 response = "Wrong request";
         }
 
-        httpExchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + DEFAULT_CHARSET);
+        httpExchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + StandardCharsets.UTF_8);
         httpExchange.sendResponseHeaders(statusCode, 0);
 
         try (OutputStream os = httpExchange.getResponseBody()) {

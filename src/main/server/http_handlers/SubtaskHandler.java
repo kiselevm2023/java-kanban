@@ -18,7 +18,7 @@ import java.time.Instant;
 
 public class SubtaskHandler implements HttpHandler {
     private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
-    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
+
     private final TaskManager taskManager;
 
     public SubtaskHandler(TaskManager taskManager) {
@@ -105,7 +105,7 @@ public class SubtaskHandler implements HttpHandler {
                 response = "Wrong request";
         }
 
-        exchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + DEFAULT_CHARSET);
+        exchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + StandardCharsets.UTF_8);
         exchange.sendResponseHeaders(statusCode, 0);
 
         try (OutputStream os = exchange.getResponseBody()) {
