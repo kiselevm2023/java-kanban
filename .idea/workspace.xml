@@ -5,68 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2256f0db-c542-4e4b-9dd1-b92a9f526247" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/constants/Status.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/constants/Status.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/constants/StatusCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/constants/StatusCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/constants/TaskType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/constants/TaskType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/exceptions/ManagerSaveException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/exceptions/ManagerSaveException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/exceptions/ManagerValidateException.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/exceptions/ManagerValidateException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/FileBackedTasksManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/FileBackedTasksManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/HistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/HistoryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryHistoryManager$CustomLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryHistoryManager$CustomLinkedList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryHistoryManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryHistoryManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/InMemoryTaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/Managers.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/Managers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/Node.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/manager/TaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/manager/TaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/HttpTaskServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/HttpTaskServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/InstantAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/InstantAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVServer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVTaskClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVTaskClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/EpicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/EpicHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/HistoryHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/HistoryHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskByEpicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskByEpicHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TaskHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TaskHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TasksHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TasksHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/Epic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/Epic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/SubTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/SubTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/tasks/Task.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/FileBackedTasksManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/FileBackedTasksManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/HTTPTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/HTTPTaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/HttpTaskServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/HttpTaskServerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/InMemoryHistoryManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/InMemoryHistoryManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/InMemoryTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/InMemoryTaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/TaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/TaskManagerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/manager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/manager/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/manager/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/manager/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/manager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/manager/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/HistoryManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryHistoryManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/InMemoryTaskManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/Managers.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/TaskManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Subtask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/HttpTaskServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/HttpTaskServerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
