@@ -58,6 +58,7 @@ public class KVTaskClient {
             HttpResponse<String> response = client.send(request, handler);
             if (response.statusCode() != 200) {
                 System.out.println("Data is not founded ");
+                return null;
             }
             return response.body();
         } catch (IOException | InterruptedException e) {

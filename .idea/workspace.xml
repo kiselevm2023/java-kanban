@@ -8,8 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVTaskClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/KVTaskClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/KVTaskClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +72,11 @@
           <url>file://$PROJECT_DIR$/src/test/TaskManagerTest.java</url>
           <line>308</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/test/TaskManagerTest.java</url>
