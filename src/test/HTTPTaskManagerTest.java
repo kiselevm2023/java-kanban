@@ -58,7 +58,7 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
         try {
         HTTPTaskManager restoredHttpTaskManager = manager.load();
         assertEquals(manager.getAllTasks(), restoredHttpTaskManager.getAllTasks());
-        assertNotNull(restoredHttpTaskManager .getAllTasks().toArray(), "Список подзадач не восстановился");
+        assertNotNull(restoredHttpTaskManager .getAllTasks().toArray(), "Список задач не восстановился");
         } catch (IOException e) {
             System.out.println("Error of creating manager");
         }
