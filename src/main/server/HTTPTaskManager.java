@@ -39,7 +39,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         HTTPTaskManager httpTaskManager;
         Map<Integer, Task> allTasks = new HashMap<>();
         try {
-            httpTaskManager = new HTTPTaskManager(historyManager, path);
+            httpTaskManager = new HTTPTaskManager(Managers.getDefaultHistory(), path);
             JsonElement jsonTasks = JsonParser.parseString(client.load("tasks"));
 
             if (!jsonTasks.isJsonNull()) {
@@ -47,11 +47,10 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 for (JsonElement jsonTask : jsonTasksArray) {
                     Task task = gson.fromJson(jsonTask, Task.class);
                     allTasks.put(task.getId(), task);
-                    this.tasks.put(task.getId(), task);
-                    this.prioritizedTasks.add(task);
+                    httpTaskManager.tasks.put(task.getId(), task);
+                    httpTaskManager.prioritizedTasks.add(task);
                 }
             }
-
 
             JsonElement jsonEpics = JsonParser.parseString(client.load("epics"));
             if (!jsonEpics.isJsonNull()) {
@@ -59,8 +58,8 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 for (JsonElement jsonEpic : jsonEpicsArray) {
                     Epic task = gson.fromJson(jsonEpic, Epic.class);
                     allTasks.put(task.getId(), task);
-                    this.epics.put(task.getId(), task);
-                    this.prioritizedTasks.add(task);
+                    httpTaskManager.epics.put(task.getId(), task);
+                    httpTaskManager.prioritizedTasks.add(task);
                 }
             }
 
@@ -70,12 +69,9 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 for (JsonElement jsonSubtask : jsonSubtasksArray) {
                     SubTask task = gson.fromJson(jsonSubtask, SubTask.class);
                     allTasks.put(task.getId(), task);
-                    this.subTasks.put(task.getId(), task);
-                    this.prioritizedTasks.add(task);
-
-
+                    httpTaskManager.subTasks.put(task.getId(), task);
+                    httpTaskManager.prioritizedTasks.add(task);
                 }
-
             }
 
             JsonElement jsonHistoryList = JsonParser.parseString(client.load("history"));
@@ -85,13 +81,13 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                     int taskId = jsonTaskId.getAsInt();
                     if (this.subTasks.containsKey(taskId)) {
                         SubTask task = subTasks.get(taskId);
-                        this.getHistory().add(task);
+                        httpTaskManager.getHistory().add(task);
                     } else if (this.epics.containsKey(taskId)) {
                         Epic task = epics.get(taskId);
-                        this.getHistory().add(task);
+                        httpTaskManager.getHistory().add(task);
                     } else if (this.tasks.containsKey(taskId)) {
                         Task task = tasks.get(taskId);
-                        this.getHistory().add(task);
+                        httpTaskManager.getHistory().add(task);
                     }
                 }
             }
@@ -102,7 +98,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                         maxId = id;
                     }
                 }
-                this.getIdCounter = maxId;
+                httpTaskManager.getIdCounter = maxId;
             }
         } catch (ManagerSaveException e) {
             System.out.println("Error occurred during the request");

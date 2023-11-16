@@ -5,6 +5,7 @@ import main.server.KVServer;
 import main.manager.HistoryManager;
 import main.manager.Managers;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import main.server.HTTPTaskManager;
 import main.tasks.Epic;
@@ -57,8 +58,7 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
         try {
         HTTPTaskManager restoredHttpTaskManager1 = manager.load();
-        assertEquals(manager.getAllTasks().toArray(), restoredHttpTaskManager1.getAllTasks().toArray());
-        assertNotNull(restoredHttpTaskManager1.getAllTasks().toArray(), "Список задач не восстановился");
+        assertEquals(manager.getAllTasks(), restoredHttpTaskManager1.getAllTasks());
         } catch (IOException e) {
             System.out.println("Error of creating manager");
         }
@@ -79,7 +79,6 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
         try {
             HTTPTaskManager restoredHttpTaskManager2 = manager.load();
             assertEquals(manager.getAllEpics(), restoredHttpTaskManager2.getAllEpics());
-            assertNotNull(restoredHttpTaskManager2.getAllEpics().toArray(), "Список задач не восстановился");
         } catch (IOException e) {
             System.out.println("Error of creating manager");
         }
@@ -103,7 +102,6 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
         try {
             HTTPTaskManager restoredHttpTaskManager3 = manager.load();
             assertEquals(manager.getAllSubtasks(), restoredHttpTaskManager3.getAllSubtasks());
-            assertNotNull(restoredHttpTaskManager3.getAllSubtasks().toArray(), "Список задач не восстановился");
         } catch (IOException e) {
             System.out.println("Error of creating manager");
         }
