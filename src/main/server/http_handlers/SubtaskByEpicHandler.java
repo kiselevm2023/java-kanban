@@ -15,17 +15,18 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 
 public class SubtaskByEpicHandler implements HttpHandler {
-    private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
+    private final Gson gson;
 
     private final TaskManager taskManager;
 
     public SubtaskByEpicHandler(TaskManager taskManager) {
         this.taskManager = taskManager;
+        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        int statusCode = StatusCode.CODE_400.getCode();
+        int statusCode;
         String response;
         String method = httpExchange.getRequestMethod();
         String path = String.valueOf(httpExchange.getRequestURI());
@@ -41,12 +42,15 @@ public class SubtaskByEpicHandler implements HttpHandler {
                     response = gson.toJson(taskManager.getSubTaskById(id));
                 } catch (StringIndexOutOfBoundsException | NullPointerException e) {
                     response = "Request do not have value of id";
+                    statusCode = StatusCode.CODE_400.getCode();
                 } catch (NumberFormatException e) {
                     response = "Wrong format of id";
+                    statusCode = StatusCode.CODE_400.getCode();
                 }
                 break;
             default:
                 response = "Wrong request";
+                statusCode = StatusCode.CODE_400.getCode();
         }
 
         httpExchange.getResponseHeaders().set("Content-Type", "text/plain; charset=" + StandardCharsets.UTF_8);

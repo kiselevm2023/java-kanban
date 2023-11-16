@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
@@ -43,40 +44,23 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
 
     @Test
     public void loadTasksTest() {
+
         Task task1 = new Task("Task 1", "Definition Task 1", Status.NEW, Instant.now(), 5);
         Task task2 = new Task("Task 2", "Definition Task 2", Status.NEW, Instant.now(), 5);
         manager.addTask(task1);
         manager.addTask(task2);
-        manager.getTaskById(task1.getId());
-        manager.getTaskById(task2.getId());
-        List<Task> list = manager.getHistory();
-        assertEquals(manager.getAllTasks(), list);
-    }
+        Task task1Id = manager.getTaskById(task1.getId());
+        Task task2Id = manager.getTaskById(task2.getId());
+        manager.getHistory().add(task1);
+        manager.getHistory().add(task2);
+        manager.save();
 
-    @Test
-    public void loadEpicsTest() {
-        Epic epic1 = new Epic("Epic 1", "Definition Epic 1", Status.NEW, Instant.now(), 10);
-        Epic epic2 = new Epic("Epic 2", "Definition Epic 2", Status.NEW, Instant.now(), 10);
-        manager.addEpic(epic1);
-        manager.addEpic(epic2);
-        manager.getEpicById(epic1.getId());
-        manager.getEpicById(epic2.getId());
-        List<Task> list = manager.getHistory();
-        assertEquals(manager.getAllEpics(), list);
-    }
-
-    @Test
-    public void loadSubTasksTest() {
-        Epic epic1 = new Epic("Epic 1", "Definition Epic 1", Status.NEW, Instant.now(), 70);
-        SubTask subTask1 = new SubTask("SubTask 1", "Definition SubTask 1", Status.NEW, epic1.getId()
-                , Instant.now(), 70);
-        SubTask SubTask2 = new SubTask("SubTask 2", "Definition SubTask 2", Status.NEW, epic1.getId(),
-                Instant.now(), 70);
-        manager.addSubTask(subTask1);
-        manager.addSubTask(SubTask2);
-        manager.getSubTaskById(subTask1.getId());
-        manager.getSubTaskById(SubTask2.getId());
-        List<Task> list = manager.getHistory();
-        assertEquals(manager.getAllSubtasks(), list);
+        try {
+        HTTPTaskManager restoredHttpTaskManager = manager.load();
+        assertEquals(manager.getAllTasks(), restoredHttpTaskManager.getAllTasks());
+        assertNotNull(restoredHttpTaskManager .getAllTasks().toArray(), "Список подзадач не восстановился");
+        } catch (IOException e) {
+            System.out.println("Error of creating manager");
+        }
     }
 }

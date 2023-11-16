@@ -17,19 +17,19 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 
 public class TaskHandler implements HttpHandler {
-    private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
+    private final Gson gson;
 
     private final TaskManager taskManager;
 
     public TaskHandler(TaskManager taskManager) {
-
         this.taskManager = taskManager;
+        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
     }
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        int statusCode;
-        String response;
+        int statusCode = StatusCode.CODE_400.getCode();
+        String response = "Wrong request";
         String method = httpExchange.getRequestMethod();
         String path = String.valueOf(httpExchange.getRequestURI());
 
@@ -51,6 +51,7 @@ public class TaskHandler implements HttpHandler {
                             response = gson.toJson(task);
                         } else {
                             response = "Task is not found with id";
+                            statusCode = StatusCode.CODE_404.getCode();
                         }
                         statusCode = StatusCode.CODE_200.getCode();
                     } catch (StringIndexOutOfBoundsException e) {
@@ -65,19 +66,21 @@ public class TaskHandler implements HttpHandler {
             case "POST":
                 String bodyRequest = new String(httpExchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                 try {
-                    Task task = gson.fromJson(bodyRequest, Task.class);
-                    int id = task.getId();
-                    if (taskManager.getTaskById(id) != null) {
-                        taskManager.updateTask(task);
-                        statusCode = StatusCode.CODE_201.getCode();
-                        response = "Task with id=" + id + " updated";
-                    } else {
-                        Task taskCreated = taskManager.addTask(task);
-                        System.out.println("Created task: " + taskCreated);
-                        int idCreated = taskCreated.getId();
-                        statusCode = StatusCode.CODE_201.getCode();
-                        response = ("Created task with id=" + idCreated);
-                        System.out.println("Created task with id=" + idCreated);
+                    if (!bodyRequest.isEmpty()) {
+                        Task task = gson.fromJson(bodyRequest, Task.class);
+                        int id = task.getId();
+                        if (taskManager.getTaskById(id) != null) {
+                            taskManager.updateTask(task);
+                            statusCode = StatusCode.CODE_201.getCode();
+                            response = "Task with id=" + id + " updated";
+                        } else {
+                            Task taskCreated = taskManager.addTask(task);
+                            System.out.println("Created task: " + taskCreated);
+                            int idCreated = taskCreated.getId();
+                            statusCode = StatusCode.CODE_201.getCode();
+                            response = ("Created task with id=" + idCreated);
+                            System.out.println("Created task with id=" + idCreated);
+                        }
                     }
                 } catch (JsonSyntaxException e) {
                     statusCode = StatusCode.CODE_400.getCode();

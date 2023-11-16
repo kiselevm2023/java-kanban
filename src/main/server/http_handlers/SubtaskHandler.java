@@ -17,18 +17,19 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 
 public class SubtaskHandler implements HttpHandler {
-    private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
+    private final Gson gson;
 
     private final TaskManager taskManager;
 
     public SubtaskHandler(TaskManager taskManager) {
         this.taskManager = taskManager;
+        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        int statusCode;
-        String response;
+        int statusCode= StatusCode.CODE_400.getCode();
+        String response = "Wrong request";
 
         String method = exchange.getRequestMethod();
 
@@ -46,6 +47,7 @@ public class SubtaskHandler implements HttpHandler {
                             response = gson.toJson(subtask);
                         } else {
                             response = "Subtask is not found with id";
+                            statusCode = StatusCode.CODE_404.getCode();
                         }
                         statusCode = StatusCode.CODE_200.getCode();
                     } catch (StringIndexOutOfBoundsException e) {
@@ -60,20 +62,22 @@ public class SubtaskHandler implements HttpHandler {
             case "POST":
                 String bodyRequest = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                 try {
-                    SubTask subtask = gson.fromJson(bodyRequest, SubTask.class);
-                    int id = subtask.getId();
-                    if (taskManager.getSubTaskById(id) != null) {
-                        taskManager.updateTask(subtask);
-                        statusCode = StatusCode.CODE_200.getCode();
-                        response = "Subtask with id=" + id + " is updated";
-                    } else {
-                        System.out.println("Created");
-                        SubTask subtaskCreated = taskManager.addSubTask(subtask);
-                        System.out.println("Created subtask: " + subtaskCreated);
-                        int idCreated = subtaskCreated.getId();
-                        statusCode = StatusCode.CODE_201.getCode();
-                        response = ("Created subtask with id=" + idCreated);
-                        System.out.println("Created subtask with id=" + idCreated);
+                    if (!bodyRequest.isEmpty()) {
+                        SubTask subtask = gson.fromJson(bodyRequest, SubTask.class);
+                        int id = subtask.getId();
+                        if (taskManager.getSubTaskById(id) != null) {
+                            taskManager.updateTask(subtask);
+                            statusCode = StatusCode.CODE_200.getCode();
+                            response = "Subtask with id=" + id + " is updated";
+                        } else {
+                            System.out.println("Created");
+                            SubTask subtaskCreated = taskManager.addSubTask(subtask);
+                            System.out.println("Created subtask: " + subtaskCreated);
+                            int idCreated = subtaskCreated.getId();
+                            statusCode = StatusCode.CODE_201.getCode();
+                            response = ("Created subtask with id=" + idCreated);
+                            System.out.println("Created subtask with id=" + idCreated);
+                        }
                     }
                 } catch (JsonSyntaxException e) {
                     response = "Wrong format of request";

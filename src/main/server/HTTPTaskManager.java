@@ -16,6 +16,8 @@ import main.manager.Managers;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HTTPTaskManager extends FileBackedTasksManager {
 
@@ -23,6 +25,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
     private String path;
 
     private  Gson gson;
+    HistoryManager historyManager;
 
     public HTTPTaskManager(HistoryManager historyManager, String path) throws IOException {
         super(historyManager);
@@ -31,18 +34,20 @@ public class HTTPTaskManager extends FileBackedTasksManager {
     }
 
 
-    public HTTPTaskManager load (HistoryManager historyManager, String path) throws IOException {
+    public HTTPTaskManager load () throws IOException {
         HTTPTaskManager httpTaskManager;
-
+        Map<Integer, Task> allTasks = new HashMap<>();
         try {
-            httpTaskManager = new HTTPTaskManager( historyManager, path);
+            httpTaskManager = new HTTPTaskManager(historyManager, path);
             JsonElement jsonTasks = JsonParser.parseString(client.load("tasks"));
 
             if (!jsonTasks.isJsonNull()) {
                 JsonArray jsonTasksArray = jsonTasks.getAsJsonArray();
                 for (JsonElement jsonTask : jsonTasksArray) {
                     Task task = gson.fromJson(jsonTask, Task.class);
+                    allTasks.put(task.getId(), task);
                     this.tasks.put(task.getId(), task);
+                    this.prioritizedTasks.add(task);
                 }
             }
 
@@ -52,7 +57,9 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 JsonArray jsonEpicsArray = jsonEpics.getAsJsonArray();
                 for (JsonElement jsonEpic : jsonEpicsArray) {
                     Epic task = gson.fromJson(jsonEpic, Epic.class);
+                    allTasks.put(task.getId(), task);
                     this.epics.put(task.getId(), task);
+                    this.prioritizedTasks.add(task);
                 }
             }
 
@@ -61,7 +68,11 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 JsonArray jsonSubtasksArray = jsonSubtasks.getAsJsonArray();
                 for (JsonElement jsonSubtask : jsonSubtasksArray) {
                     SubTask task = gson.fromJson(jsonSubtask, SubTask.class);
+                    allTasks.put(task.getId(), task);
                     this.subTasks.put(task.getId(), task);
+                    this.prioritizedTasks.add(task);
+
+
                 }
 
             }
@@ -72,13 +83,25 @@ public class HTTPTaskManager extends FileBackedTasksManager {
                 for (JsonElement jsonTaskId : jsonHistoryArray) {
                     int taskId = jsonTaskId.getAsInt();
                     if (this.subTasks.containsKey(taskId)) {
-                        this.tasks.get(taskId);
+                        SubTask task = subTasks.get(taskId);
+                        this.getHistory().add(task);
                     } else if (this.epics.containsKey(taskId)) {
-                        this.epics.get(taskId);
+                        Epic task = epics.get(taskId);
+                        this.getHistory().add(task);
                     } else if (this.tasks.containsKey(taskId)) {
-                        this.subTasks.get(taskId);
+                        Task task = tasks.get(taskId);
+                        this.getHistory().add(task);
                     }
                 }
+            }
+            if (!allTasks.isEmpty()) {
+                int maxId = 0;
+                for (int id : allTasks.keySet()) {
+                    if (id > maxId) {
+                        maxId = id;
+                    }
+                }
+                this.getIdCounter = maxId;
             }
         } catch (ManagerSaveException e) {
             System.out.println("Error occurred during the request");

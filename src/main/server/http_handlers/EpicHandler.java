@@ -18,18 +18,19 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 
 public class EpicHandler implements HttpHandler {
-    private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
+    private final Gson gson;
 
     private final TaskManager taskManager;
 
     public EpicHandler(TaskManager taskManager) {
         this.taskManager = taskManager;
+        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        int statusCode;
-        String response;
+        int statusCode = StatusCode.CODE_400.getCode();
+        String response = "Wrong request";
 
         String method = exchange.getRequestMethod();
 
@@ -49,6 +50,7 @@ public class EpicHandler implements HttpHandler {
                             response = gson.toJson(epic);
                         } else {
                             response = "Epic is not found with id";
+                            statusCode = StatusCode.CODE_404.getCode();
                         }
                         statusCode = StatusCode.CODE_200.getCode();
                     } catch (StringIndexOutOfBoundsException e) {
@@ -63,20 +65,22 @@ public class EpicHandler implements HttpHandler {
             case "POST":
                 String bodyRequest = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                 try {
-                    Epic epic = gson.fromJson(bodyRequest, Epic.class);
-                    int id = epic.getId();
-                    if (taskManager.getEpicById(id) != null) {
-                        taskManager.updateTask(epic);
-                        statusCode = StatusCode.CODE_200.getCode();
-                        response = "Epic with id=" + id + " is updated";
-                    } else {
-                        System.out.println("Created");
-                        Epic epicCreated = taskManager.addEpic(epic);
-                        System.out.println("Created EPIC: " + epicCreated);
-                        int idCreated = epicCreated.getId();
-                        statusCode = StatusCode.CODE_201.getCode();
-                        response = ("Created Epic with id=" + idCreated);
-                        System.out.println("Created Epic with id=" + idCreated);
+                    if (!bodyRequest.isEmpty()) {
+                        Epic epic = gson.fromJson(bodyRequest, Epic.class);
+                        int id = epic.getId();
+                        if (taskManager.getEpicById(id) != null) {
+                            taskManager.updateTask(epic);
+                            statusCode = StatusCode.CODE_200.getCode();
+                            response = "Epic with id=" + id + " is updated";
+                        } else {
+                            System.out.println("Created");
+                            Epic epicCreated = taskManager.addEpic(epic);
+                            System.out.println("Created EPIC: " + epicCreated);
+                            int idCreated = epicCreated.getId();
+                            statusCode = StatusCode.CODE_201.getCode();
+                            response = ("Created Epic with id=" + idCreated);
+                            System.out.println("Created Epic with id=" + idCreated);
+                        }
                     }
                 } catch (JsonSyntaxException e) {
                     statusCode = StatusCode.CODE_400.getCode();
