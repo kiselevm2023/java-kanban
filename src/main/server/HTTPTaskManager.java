@@ -29,6 +29,7 @@ public class HTTPTaskManager extends FileBackedTasksManager {
 
     public HTTPTaskManager(HistoryManager historyManager, String path) throws IOException {
         super(historyManager);
+        this.path = path;
         client = new KVTaskClient(path);
         gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
     }

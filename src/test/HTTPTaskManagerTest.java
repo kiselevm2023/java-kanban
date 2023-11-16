@@ -56,9 +56,54 @@ class HTTPTaskManagerTest extends TaskManagerTest<HTTPTaskManager> {
         manager.save();
 
         try {
-        HTTPTaskManager restoredHttpTaskManager = manager.load();
-        assertEquals(manager.getAllTasks(), restoredHttpTaskManager.getAllTasks());
-        assertNotNull(restoredHttpTaskManager .getAllTasks().toArray(), "Список задач не восстановился");
+        HTTPTaskManager restoredHttpTaskManager1 = manager.load();
+        assertEquals(manager.getAllTasks().toArray(), restoredHttpTaskManager1.getAllTasks().toArray());
+        assertNotNull(restoredHttpTaskManager1.getAllTasks().toArray(), "Список задач не восстановился");
+        } catch (IOException e) {
+            System.out.println("Error of creating manager");
+        }
+    }
+
+    @Test
+    public void loadEpicsTest() {
+        Epic epic1 = new Epic("Title Epic 1", "Description Epic 1", Status.NEW, Instant.now(), 15);
+        Epic epic2 = new Epic("Title Epic 2", "Description Epic 2", Status.NEW, Instant.now(), 15);
+        manager.addEpic(epic1);
+        manager.addEpic(epic2);
+        Task epic1Id = manager.getEpicById(epic1.getId());
+        Task epic2Id = manager.getEpicById(epic2.getId());
+        manager.getHistory().add(epic1);
+        manager.getHistory().add(epic2);
+        manager.save();
+
+        try {
+            HTTPTaskManager restoredHttpTaskManager2 = manager.load();
+            assertEquals(manager.getAllEpics(), restoredHttpTaskManager2.getAllEpics());
+            assertNotNull(restoredHttpTaskManager2.getAllEpics().toArray(), "Список задач не восстановился");
+        } catch (IOException e) {
+            System.out.println("Error of creating manager");
+        }
+    }
+
+    @Test
+    public void loadSubTasksTest() {
+        Epic epic1 = new Epic("Title Epic 1", "Description Epic 1", Status.NEW, Instant.now(), 30);
+        SubTask subTask1 = new SubTask("Title SubTask 1", "Description SubTask 1", Status.NEW, epic1.getId()
+                , Instant.now(), 15);
+        SubTask SubTask2 = new SubTask("Title SubTask 2", "Description SubTask 2", Status.NEW, epic1.getId(),
+                Instant.now(), 15);
+        manager.addSubTask(subTask1);
+        manager.addSubTask(SubTask2);
+
+        SubTask SubTask1Id = manager.getSubTaskById(subTask1.getId());
+        SubTask SubTask2Id = manager.getSubTaskById(SubTask2.getId());
+        manager.getHistory().add(subTask1);
+        manager.getHistory().add(SubTask2);
+        manager.save();
+        try {
+            HTTPTaskManager restoredHttpTaskManager3 = manager.load();
+            assertEquals(manager.getAllSubtasks(), restoredHttpTaskManager3.getAllSubtasks());
+            assertNotNull(restoredHttpTaskManager3.getAllSubtasks().toArray(), "Список задач не восстановился");
         } catch (IOException e) {
             System.out.println("Error of creating manager");
         }

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2256f0db-c542-4e4b-9dd1-b92a9f526247" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
