@@ -15,13 +15,13 @@ import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 
 public class HistoryHandler implements HttpHandler {
-    private final Gson gson;
+    Gson gson;
 
     private final TaskManager taskManager;
 
-    public HistoryHandler(TaskManager taskManager) {
+    public HistoryHandler(TaskManager taskManager, Gson gson) {
         this.taskManager = taskManager;
-        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
+        this.gson = gson;
     }
 
     @Override

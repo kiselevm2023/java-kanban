@@ -8,9 +8,21 @@
       <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/HTTPTaskManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/test/HTTPTaskManagerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/test/HTTPTaskManagerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/HttpTaskServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/HttpTaskServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/EpicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/EpicHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/HistoryHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/HistoryHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskByEpicHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskByEpicHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/SubtaskHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TaskHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TaskHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TasksHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/main/server/http_handlers/TasksHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HTTPTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/HTTPTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/EpicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/HistoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskByEpicHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/SubtaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TaskHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/server/http_handlers/TasksHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

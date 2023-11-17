@@ -41,16 +41,19 @@ public class HTTPTaskManager extends FileBackedTasksManager {
         try {
             httpTaskManager = new HTTPTaskManager(Managers.getDefaultHistory(), path);
             JsonElement jsonTasks = JsonParser.parseString(client.load("tasks"));
-
-            if (!jsonTasks.isJsonNull()) {
-                JsonArray jsonTasksArray = jsonTasks.getAsJsonArray();
-                for (JsonElement jsonTask : jsonTasksArray) {
-                    Task task = gson.fromJson(jsonTask, Task.class);
-                    allTasks.put(task.getId(), task);
-                    httpTaskManager.tasks.put(task.getId(), task);
-                    httpTaskManager.prioritizedTasks.add(task);
-                }
+            if (jsonTasks.isJsonNull()) {
+                return null;
             }
+                if (!jsonTasks.isJsonNull()) {
+                    JsonArray jsonTasksArray = jsonTasks.getAsJsonArray();
+                    for (JsonElement jsonTask : jsonTasksArray) {
+                        Task task = gson.fromJson(jsonTask, Task.class);
+                        allTasks.put(task.getId(), task);
+                        httpTaskManager.tasks.put(task.getId(), task);
+                        httpTaskManager.prioritizedTasks.add(task);
+                    }
+                }
+
 
             JsonElement jsonEpics = JsonParser.parseString(client.load("epics"));
             if (!jsonEpics.isJsonNull()) {

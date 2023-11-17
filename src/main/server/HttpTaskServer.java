@@ -1,5 +1,7 @@
 package main.server;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpServer;
 import main.manager.HistoryManager;
 import main.manager.Managers;
@@ -13,22 +15,25 @@ import main.server.http_handlers.TasksHandler;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.time.Instant;
 
 public class HttpTaskServer {
     private static final int PORT = 8080;
     private final HttpServer httpServer;
+    private final Gson gson;
 
     public HttpTaskServer() throws IOException, InterruptedException {
         HistoryManager historyManager = Managers.getDefaultHistory();
         TaskManager taskManager = Managers.getDefault(historyManager);
+        gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantAdapter()).create();
         this.httpServer = HttpServer.create();
         httpServer.bind(new InetSocketAddress(PORT), 0);
-        httpServer.createContext("/tasks/", new TasksHandler(taskManager));
-        httpServer.createContext("/tasks/task/", new TaskHandler(taskManager));
-        httpServer.createContext("/tasks/epic/", new EpicHandler(taskManager));
-        httpServer.createContext("/tasks/subtask/", new SubtaskHandler(taskManager));
-        httpServer.createContext("/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager));
-        httpServer.createContext("/tasks/history/", new HistoryHandler(taskManager));
+        httpServer.createContext("/tasks/", new TasksHandler(taskManager, gson));
+        httpServer.createContext("/tasks/task/", new TaskHandler(taskManager, gson));
+        httpServer.createContext("/tasks/epic/", new EpicHandler(taskManager, gson));
+        httpServer.createContext("/tasks/subtask/", new SubtaskHandler(taskManager, gson));
+        httpServer.createContext("/tasks/subtask/epic/", new SubtaskByEpicHandler(taskManager, gson));
+        httpServer.createContext("/tasks/history/", new HistoryHandler(taskManager, gson));
     }
 
     public void start() {
