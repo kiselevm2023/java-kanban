@@ -1,4 +1,4 @@
-# Java Project "java-kanban"
+# Проект "java-kanban"
 ShareIt - cервис трекера задач.
 
 Основные возможности
